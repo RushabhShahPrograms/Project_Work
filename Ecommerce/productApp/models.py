@@ -27,3 +27,17 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+class Demo(models.Model):
+     username = models.CharField(max_length = 99, unique = True)
+     profile_pic = models.ImageField(upload_to = "profile_pic")
+     
+     
+     
+     @property
+     def imageURL(self):
+        try:
+            url = self.profile_pic.url
+        except:
+            url = ''
+        return url
