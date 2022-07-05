@@ -34,13 +34,13 @@
                     <h2 class="title">Registration Info</h2>
                     <form method="post">
 					{% csrf_token %}
-					<div class="input-group">
+					<div class="input">
 						{{form.username|as_crispy_field}}
 					</div>
-					<div class="input-group">
+					<div class="input">
 						{{form.email|as_crispy_field}}
 					</div>
-					<div class="input-group">
+					<div class="input">
 						{{form.password|as_crispy_field}}
 					</div>
 					<div class="p-t-10">

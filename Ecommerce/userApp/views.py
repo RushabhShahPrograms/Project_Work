@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
 
 from .forms import UserForm
 
@@ -10,11 +11,12 @@ class BaseRegisterView(FormView):
 
     form_class = UserForm
     template_name ="userApp/register.html"
-    success_url = "/"
+    success_url = "/user/login"
     
     def form_valid(self, form):
         user = form.save()
-        user.set_password = form.cleaned_data['password']
+        user.is_staff = True
+        user.password = make_password(form.cleaned_data['password'])
         user.save()
         return super().form_valid(form)
 
