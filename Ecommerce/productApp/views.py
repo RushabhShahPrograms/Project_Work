@@ -5,7 +5,13 @@ from django.views.generic.edit import CreateView
 
 # Create your views here.
 def IndexView(request):
-    return HttpResponse('This is index page')
+    return render(request,'productApp/index.html')
+
+def ShopView(request):
+    return render(request,'productApp/shop.html')
+
+def ShopSingleView(request):
+    return render(request,'productApp/shop-single.html')
 
 
 class DemoCreateView(CreateView):

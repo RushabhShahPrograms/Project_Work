@@ -56,7 +56,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Ecommerce.urls'
-LOGIN_REDIRECT_URL = '/user/profile'
+LOGIN_REDIRECT_URL = '/'
 
 TEMPLATES = [
     {

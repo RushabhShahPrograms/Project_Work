@@ -24,7 +24,7 @@ class UserLoginView(LoginView):
     template_name = "userApp/login.html"
     success_url ="/"
 
-def UserLogout(request):
+def UserLogoutView(request):
     if request.method == "POST":
         logout(request)
 
