@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render, get_list_or_404
 from django.http import HttpResponse
 from .models import *
 from django.views.generic.edit import CreateView
@@ -7,11 +7,16 @@ from django.views.generic.edit import CreateView
 def IndexView(request):
     return render(request,'productApp/index.html')
 
-def ShopView(request):
-    return render(request,'productApp/shop.html')
+def Home(request):
+    return render(request,'productApp/index.html')
 
-def ShopSingleView(request):
-    return render(request,'productApp/shop-single.html')
+def ShopView(request):
+    products = Product.objects.all()
+    return render(request,'productApp/shop.html',{'products' : products})
+
+def ShopSingleView(request,id):
+    obj=get_object_or_404(Product,pk=id)
+    return render(request,'productApp/shop-single.html',{'obj':obj})
 
 
 class DemoCreateView(CreateView):

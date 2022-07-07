@@ -8,3 +8,8 @@ class UserForm(forms.ModelForm):
     class Meta:
         model=User
         fields=('username', 'email', 'password')
+
+        widgets = {
+            'username':forms.TextInput(attrs={'class':'form-control','class':'form-group mb-3'}),
+            'password':forms.PasswordInput(attrs={'class':'flow-control','class':'form-group mb-3'}),
+        }

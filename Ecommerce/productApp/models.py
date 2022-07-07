@@ -1,5 +1,6 @@
 from unicodedata import category
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Category(models.Model):
@@ -18,8 +19,11 @@ class Product(models.Model):
     product_price = models.FloatField()
     product_qty = models.IntegerField()
     product_desc = models.TextField()
+    product_available_count = models.IntegerField(default=0)
+    product_img = models.ImageField(upload_to='images/', null=True)
     product_creation_date = models.DateTimeField()
     product_availablity = models.BooleanField(null=True)
+    product_is_featured = models.BooleanField(default=False)
 
     #product_Product
     class Meta:
@@ -27,6 +31,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
 
 class Demo(models.Model):
      username = models.CharField(max_length = 99, unique = True)
