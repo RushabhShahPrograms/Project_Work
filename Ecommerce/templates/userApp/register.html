@@ -2,6 +2,8 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+
+
 {% comment %}
 <form method = "post">
     {% csrf_token %}
@@ -9,7 +11,7 @@
     <input type="submit" value="Submit">
 </form>
 {% endcomment %}
-
+{% comment  %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -66,4 +68,71 @@
 
 </html>
 <!-- end document-->
+{% endblock content %}
+{% endcomment %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title Page-->
+    <title>Register Form</title>
+
+    
+</head>
+
+<body>
+<form action="{% url 'register'  %}" method="POST">
+    <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Registration Info</h2>
+
+    {% csrf_token %}
+    <label for="">Email:</label>
+    <br>
+    <input type="email" name="email">
+    <br>
+    <label for="">Username:</label>
+    <br>
+    <input type="text" name="username">
+    <br>
+    <label for="">Password:</label>
+    <br>
+    <input type="password" name="password">
+    <br>
+    <br>
+    <button class="btn btn--pill btn--green" type="submit">Submit</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="">
+    {% for message in messages %}
+    <span> {{message}}</span>
+    {% endfor %}
+</div>
+
+<!-- Jquery JS-->
+<script src="{% static '/register/vendor/jquery/jquery.min.js' %}"></script>
+<!-- Vendor JS-->
+<script src="{% static '/register/vendor/select2/select2.min.js' %}"></script>
+<script src="{% static '/register/vendor/datepicker/moment.min.js' %}"></script>
+<script src="{% static '/register/vendor/datepicker/daterangepicker.js' %}"></script>
+
+<!-- Main JS-->
+<script src="{% static '/register/js/global.js' %}"></script>
+
+</body>
+
+</html>
 {% endblock content %}

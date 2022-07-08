@@ -1,10 +1,11 @@
 {% load static %}
+{% load cart_template_tag %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Zay Shop - Product Listing Page</title>
+    <title>Mr. Ecommerce - Product Listing Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,13 +19,6 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="{% static '/asset/css/fontawesome.min.css' %}">
-<!--
-    
-TemplateMo 559 Zay Shop
-
-https://templatemo.com/tm-559-zay-shop
-
--->
 </head>
 
 <body>
@@ -81,10 +75,12 @@ https://templatemo.com/tm-559-zay-shop
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
+                    {% if user.is_authenticated %}
                     <a class="nav-icon position-relative text-decoration-none" href="#">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ request.user | cart_item_count }}</span>
                     </a>
+                    {% endif %}
                 </div>
             </div>
 
@@ -114,79 +110,33 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Start Content -->
     <div class="container py-5">
         <div class="row">
-
+            <!--Category View-->
             <div class="col-lg-3">
                 <h1 class="h2 pb-4">Categories</h1>
                 <ul class="list-unstyled templatemo-accordion">
+                    {% for item in cat_menu %}
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Gender
-                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                            {{item.category}}
                         </a>
-                        <ul class="collapse show list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Men</a></li>
-                            <li><a class="text-decoration-none" href="#">Women</a></li>
-                        </ul>
                     </li>
+                    {% endfor %}
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
                             Sale
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
-                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Sport</a></li>
-                            <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                        </ul>
                     </li>
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
                             Product
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
-                        <ul id="collapseThree" class="collapse list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Bag</a></li>
-                            <li><a class="text-decoration-none" href="#">Sweather</a></li>
-                            <li><a class="text-decoration-none" href="#">Sunglass</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>
-
+            <!--End Category View-->
+            <!--Product List-->
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-md-6">
-                        <ul class="list-inline shop-top-menu pb-3 pt-1">
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">All</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">Men's</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none" href="#">Women's</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 pb-4">
-                        <div class="d-flex">
-                            <select class="form-control">
-                                <option>Featured</option>
-                                <option>A to Z</option>
-                                <option>Item</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!--
-                    {% for products in product %}
-
-                    <h1>{{product.name}}</h1>
-                    <p>{{product.description}}</p>
-
-                    {% endfor %}
-                    -->
-
                     <div class="container mt-4 d-flex mb-5">
                         <div class="row">
                             {% for product in products %}
@@ -199,12 +149,12 @@ https://templatemo.com/tm-559-zay-shop
                                             <p class="card-text mr-4 text-success">Price: {{product.product_price}}</p>
                                             <p>&nbsp;</p>
                                         </div>
-                                        <a class="btn btn-primary" href="{% url 'shop-single' product.id %}" role="button">Details</a>
-                                        <!--<a href="{% url 'shop-single' product.id %}" class="card-link" data-toggle="modal" data-target="#model">View More</a>-->
+                                        <a class="btn btn-primary" href="{% url 'shop-single' product.pk %}" role="button">Details</a>
                                     </div>
                                 </div>
                             </div>
                             {% endfor %}
+                            <!--End of Product List-->
                         </div>
                     </div>    
             </div>
