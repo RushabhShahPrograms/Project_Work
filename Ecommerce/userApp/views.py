@@ -40,6 +40,6 @@ def sendMail(request):
     subject = "Test"
     message = "Hello This is Ecommerce"
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = ['rushabhshah122000@gmail.com','techyrushabh@gmail.com','mixedthinkerblog@gmail.com']
+    recipient_list = ['01@gmail.com']
     send_mail(subject,message,email_from,recipient_list)
     return HttpResponse("Sent Mail")
