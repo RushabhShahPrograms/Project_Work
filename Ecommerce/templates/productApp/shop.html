@@ -22,71 +22,68 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container d-flex justify-content-between align-items-center">
-
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
-                Zay
-            </a>
-
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-                <div class="flex-fill">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-light shadow">
+            <div class="container d-flex justify-content-between align-items-center">
+    
+                <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+                    Mr. Ecommerce
+                </a>
+    
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                    <div class="flex-fill">
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'index' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'about' %}">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'shop' %}">Shop</a>
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                              <a class="nav-link" href="{% url 'profile' %}">{{user.username}}</a>
+                          </li>
+                            {% else %}
+                            <li class="nav-item">
+                              <a class="nav-link" href="{% url 'login' %}">Login</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'shop' %}">Shop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'profile' %}">{{user.username}}</a>
-                      </li>
-                        {% else %}
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'login' %}">Login</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'create' %}">Register</a>
-                    </li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <div class="navbar align-self-center d-flex">
-                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                            <div class="input-group-text">
-                                <i class="fa fa-fw fa-search"></i>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="navbar align-self-center d-flex">
+                        <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                                <div class="input-group-text">
+                                    <i class="fa fa-fw fa-search"></i>
+                                </div>
                             </div>
                         </div>
+                        <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                            <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                        </a>
+                        {% if user.is_authenticated %}
+                        <a class="nav-icon position-relative text-decoration-none" href="#">
+                            <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                            <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ request.user | cart_item_count }}</span>
+                        </a>
+                        {% endif %}
                     </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                    </a>
-                    {% if user.is_authenticated %}
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ request.user | cart_item_count }}</span>
-                    </a>
-                    {% endif %}
                 </div>
+    
             </div>
-
-        </div>
-    </nav>
-    <!-- Close Header -->
+        </nav>
+        <!-- Close Header -->
 
     <!-- Modal -->
     <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -112,26 +109,6 @@
         <div class="row">
             <!--Category View-->
             <div class="col-lg-3">
-                <h1 class="h2 pb-4">Categories</h1>
-                <ul class="list-unstyled templatemo-accordion">
-                    {% for item in cat_menu %}
-                    <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            {{item.category}}
-                        </a>
-                    </li>
-                    {% endfor %}
-                    <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Sale
-                        </a>
-                    </li>
-                    <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Product
-                        </a>
-                    </li>
-                </ul>
             </div>
             <!--End Category View-->
             <!--Product List-->
@@ -164,21 +141,22 @@
     <!-- End Content -->
 
 
-    <!-- Start Brands -->
-    <section class="bg-light py-5">
+       <!-- Start Brands -->
+       <section class="bg-light py-5">
         <div class="container my-4">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1">Our Brands</h1>
                     <p>
-                        Products from popular Brands.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        Lorem ipsum dolor sit amet.
                     </p>
                 </div>
                 <div class="col-lg-9 m-auto tempaltemo-carousel">
                     <div class="row d-flex flex-row">
                         <!--Controls-->
                         <div class="col-1 align-self-center">
-                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
+                            <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="prev">
                                 <i class="text-light fas fa-chevron-left"></i>
                             </a>
                         </div>
@@ -186,7 +164,7 @@
 
                         <!--Carousel Wrapper-->
                         <div class="col">
-                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example" data-bs-ride="carousel">
+                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="templatemo-slide-brand" data-bs-ride="carousel">
                                 <!--Slides-->
                                 <div class="carousel-inner product-links-wap" role="listbox">
 
@@ -213,39 +191,20 @@
                                     <div class="carousel-item">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/samsung.png' %}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/brand_01.png' %}" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/asus.png' %}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="{%static '/asset/img/brand_02.png' %}" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/acer.png' %}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/brand_03.png' %}" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/motorola.png' %}" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/brand_04.png' %}" alt="Brand Logo"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <!--End Second slide-->
-
-                                    <!--Third slide-->
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/nokia.png' %}" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/lenovo.png' %}" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/motorola.png' %}" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="{% static '/asset/img/razer.png' %}" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End Third slide-->
 
                                 </div>
                                 <!--End Slides-->
@@ -255,7 +214,7 @@
 
                         <!--Controls-->
                         <div class="col-1 align-self-center">
-                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
+                            <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="next">
                                 <i class="text-light fas fa-chevron-right"></i>
                             </a>
                         </div>
@@ -274,7 +233,7 @@
             <div class="row">
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Mr. Ecommerce</h2>
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Zay Shop</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
@@ -286,7 +245,7 @@
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:info@company.com">askme@mrecommerce.com</a>
+                            <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
                         </li>
                     </ul>
                 </div>
@@ -294,13 +253,13 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Laptops</a></li>
-                        <li><a class="text-decoration-none" href="#">Headphones</a></li>
-                        <li><a class="text-decoration-none" href="#">Smartwatches</a></li>
-                        <li><a class="text-decoration-none" href="#">Smartphones</a></li>
-                        <li><a class="text-decoration-none" href="#">Televisions</a></li>
-                        <li><a class="text-decoration-none" href="#">Shoes</a></li>
-                        <li><a class="text-decoration-none" href="#">Clothes</a></li>
+                        <li><a class="text-decoration-none" href="#">Luxury</a></li>
+                        <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
+                        <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
+                        <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
+                        <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
                     </ul>
                 </div>
 
@@ -309,6 +268,8 @@
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="text-decoration-none" href="#">Home</a></li>
                         <li><a class="text-decoration-none" href="#">About Us</a></li>
+                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
                         <li><a class="text-decoration-none" href="#">Contact</a></li>
                     </ul>
                 </div>
@@ -322,7 +283,7 @@
                 <div class="col-auto me-auto">
                     <ul class="list-inline text-left footer-icons">
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                            <a rel="nofollow" class="text-light text-decoration-none" target="_blank" href="http://fb.com/templatemo"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
                             <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
@@ -335,6 +296,13 @@
                         </li>
                     </ul>
                 </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="subscribeEmail">Email address</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address">
+                        <div class="input-group-text btn-success text-light">Subscribe</div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -344,7 +312,7 @@
                     <div class="col-12">
                         <p class="text-left text-light">
                             Copyright &copy; 2021 Company Name 
-                            | Designed by <a rel="sponsored" href="#" target="_blank">RushabhShah</a>
+                            | Designed by <a rel="sponsored" href="https://templatemo.com/page/1" target="_blank">TemplateMo</a>
                         </p>
                     </div>
                 </div>

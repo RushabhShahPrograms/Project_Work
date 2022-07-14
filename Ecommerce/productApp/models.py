@@ -3,7 +3,6 @@ from tkinter import CASCADE
 from unicodedata import category
 from django.db import models
 from django.urls import reverse
-
 from userApp.models import User
 
 # Create your models here.

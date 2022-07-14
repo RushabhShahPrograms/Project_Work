@@ -1,3 +1,4 @@
+from multiprocessing import context
 from pyexpat.errors import messages
 import datetime
 from django.utils import timezone
@@ -9,17 +10,8 @@ from django.views.generic.edit import CreateView
 from django.views.generic.base import TemplateView
 
 class IndexView(TemplateView):
-    cats = Category.objects.all()
+    data = Product.objects.all()
     template_name = "productApp/index.html"
-
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
-        context = super(IndexView, self).get_context_data(*args, **kwargs)
-        context["cat_menu"] = cat_menu
-        return context
-
-class Contact(TemplateView):
-    template_name = "productApp/contact.html"
 
 class About(TemplateView):
     template_name = "productApp/about.html"

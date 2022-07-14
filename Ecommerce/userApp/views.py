@@ -37,7 +37,7 @@ def UserLogoutView(request):
     if request.method == "POST":
         logout(request)
 
-        return redirect('home')
+        return redirect('/')
     
 def profile(request):
     return render(request, "userApp/profile.html")
